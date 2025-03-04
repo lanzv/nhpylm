@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling", "setuptools", "Cython==3.0.12"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nhpylm"
+version = "0.0.1"
+dependencies = [
+  "numpy==2.2.0"
+]
+requires-python = ">=3.10"
+authors = [
+  {name = "Vojtech Lanz", email = "vojtech.lanz@gmail.com"},
+]
+maintainers = [
+  {name = "Vojtech Lanz", email = "vojtech.lanz@gmail.com"},
+]
+description = "Implementation of Nested Hierarchical Pitman-Yor Language Model for Python"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["nhpylm", "non-parametric bayessian statistics", "segmentation", "classification"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+]
+
+[project.optional-dependencies]
+dev=["setuptools", "build", "Cython==3.0.12"]
+examples = [
+
+]
+tests = [
+
+]
+
+[project.urls]
+Homepage = "https://github.com/lanzv/nhpylm"
+Documentation = "https://github.com/lanzv/nhpylm"
+Repository = "https://github.com/lanzv/nhpylm.git"
