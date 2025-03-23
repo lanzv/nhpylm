@@ -1,58 +1,24 @@
-#from Cython.Build import cythonize
-#from setuptools import setup, Extension
-from distutils.core import setup
+from setuptools import setup, Extension
 from Cython.Build import cythonize
-from numpy.distutils.core import setup
 import numpy
 
-"""
-ext_modules = [
-    Extension(
-        "nhpylm_model",
-        ["nhpylm/nhpylm_model.pyx"],
-        defined_macros=[("CYTHON_LIMITED_API", "1")],
-        py_limited_api=True
-    )
+extensions = [
+    Extension("nhpylm.blocked_gibbs_sampler", ["nhpylm/blocked_gibbs_sampler.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.hyperparameters", ["nhpylm/hyperparameters.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.models", ["nhpylm/models.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.npylm", ["nhpylm/npylm.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.random_utils", ["nhpylm/random_utils.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.sequence", ["nhpylm/sequence.pyx"], include_dirs=[numpy.get_include()]),
+    Extension("nhpylm.viterbi_algorithm", ["nhpylm/viterbi_algorithm.pyx"], include_dirs=[numpy.get_include()]),
 ]
 
 setup(
-    ext_modules=cythonize(ext_modules)
+    name="nhpylm",
+    version="0.0.1",
+    packages=["nhpylm"],
+    ext_modules=cythonize(extensions, language_level="3"),
+    install_requires=["numpy", "cython"],
+    include_package_data=True,
+    zip_safe=False,
 )
-"""
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/random_utils.pyx"),
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/sequence.pyx"),
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/npylm.pyx"),
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/hyperparameters.pyx"),
-    include_dirs=[numpy.get_include()],
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/blocked_gibbs_sampler.pyx"),
-    include_dirs=[numpy.get_include()],
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/viterbi_algorithm.pyx"),
-    packages=['nhpylm']
-)
-setup(
-    name='nhpylm model',
-    ext_modules=cythonize("nhpylm/models.pyx"),
-    include_dirs=["nhpylm/", numpy.get_include()]
-)
+

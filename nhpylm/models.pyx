@@ -413,6 +413,7 @@ cdef class NHPYLMClassesModel:
             list of log probabilities of chosen segmentaitons (sum of segmentation over all classes)
         """
         cdef str cl
+        cdef str cl2
         cdef dict segmented_sequences_classes = {}
         # Predict segmentations for each class
         for cl in self.npylm_classes:
@@ -423,6 +424,7 @@ cdef class NHPYLMClassesModel:
         cdef list best_classes = []
         cdef str best_class
         cdef float best_prob
+        cdef float mode_log_probability
         cdef float prob
         cdef int i
         cdef NPYLM npylm
@@ -430,12 +432,14 @@ cdef class NHPYLMClassesModel:
             best_class = ""
             best_prob = -float('inf')
             for cl in self.npylm_classes:
-                sequence_segmentation = segmented_sequences_classes[cl][i]
+                mode_log_probability = -float('inf')
                 npylm = self.npylm_classes[cl]
-                prob = npylm.get_segmentation_log_probability(sequence_segmentation)
-                if prob > best_prob:
+                for cl2 in self.npylm_classes:
+                    sequence_segmentation = segmented_sequences_classes[cl2][i]
+                    mode_log_probability = np.logaddexp(mode_log_probability, npylm.get_segmentation_log_probability(sequence_segmentation))
+                if mode_log_probability > best_prob:
                     best_class = cl
-                    best_prob = prob
+                    best_prob = mode_log_probability
             best_classes.append(best_class)
 
         # Check that there is no better class for the segmentation
@@ -466,7 +470,7 @@ cdef class NHPYLMClassesModel:
             prob_sum = -float('inf')
             for cl in self.npylm_classes:
                 npylm = self.npylm_classes[cl]
-                prob_sum = np.logaddexp(prob_sum, npylm.get_segmentation_log_probability(sequence_segmentation))
+                prob_sum = np.logaddexp(prob_sum, npylm.get_segmentation_log_probability(sequence_segmentation) + np.log(1/8))
             segmentation_log_probs.append(prob_sum)
 
         return prediction, segmentations, segmentation_log_probs
