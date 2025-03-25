@@ -23,15 +23,8 @@ Classification model based on the Conditional NHPYLM segmentation.
 ## How to install this package
 
 ```sh
-python setup.py build_ext --inplace
 pip install .
 ```
-
-
-## Requirements
-
-Cython==3.0.12
- 
 
 
 ## How to cite

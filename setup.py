@@ -17,7 +17,7 @@ setup(
     version="0.0.1",
     packages=["nhpylm"],
     ext_modules=cythonize(extensions, language_level="3"),
-    install_requires=["numpy", "cython"],
+    install_requires=["numpy<2.0", "cython==3.0.12"],
     include_package_data=True,
     zip_safe=False,
 )

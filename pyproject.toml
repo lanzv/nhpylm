@@ -1,6 +1,5 @@
 [build-system]
-requires = ["hatchling", "setuptools", "Cython==3.0.12"]
-build-backend = "hatchling.build"
+requires = ["setuptools", "wheel", "Cython==3.0.12", "numpy==2.2.0"]
 
 [project]
 name = "nhpylm"
@@ -28,7 +27,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev=["setuptools", "build", "Cython==3.0.12"]
+dev=["setuptools", "build", "Cython==3.0.12", "numpy<2.0"]
 examples = [
 
 ]

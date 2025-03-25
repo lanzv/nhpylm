@@ -1,5 +1,6 @@
 # Ignore build folder
 build/
+nhpylm.egg-info/
 
 # Ignore all __pycache__ folders
 **/__pycache__/
