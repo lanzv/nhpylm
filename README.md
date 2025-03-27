@@ -101,5 +101,5 @@ For classification, multiple NHPYLM models are trained per category (e.g., chant
 ## How to cite
 
 ```
-TODO citation
+Anonymized for Submission
 ```
