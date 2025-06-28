@@ -1,5 +1,6 @@
 [build-system]
 requires = ["setuptools", "wheel", "Cython==3.0.12", "numpy==2.2.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "nhpylm"
@@ -10,6 +11,7 @@ dependencies = [
 requires-python = ">=3.10"
 authors = [
   {name = "Vojtech Lanz", email = "vojtech.lanz@gmail.com"},
+  {name = "Jan Hajic jr.", email = "hajicj@ufal.mff.cuni.cz"}
 ]
 maintainers = [
   {name = "Vojtech Lanz", email = "vojtech.lanz@gmail.com"},

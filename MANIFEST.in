@@ -1,0 +1,2 @@
+include nhpylm/*.pyx
+include nhpylm/*.pxd

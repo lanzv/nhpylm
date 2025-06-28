@@ -13,6 +13,12 @@ Additionally, the NHPYLMClassesModel can also predict the class of the sentence,
 
 ## Usage
 
+Install the nhpylm package
+
+```sh
+pip install nhpylm
+```
+
 ### NHPYLMModel (Segmentation)
 
 ```python
